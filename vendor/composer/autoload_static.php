@@ -60,6 +60,9 @@ class ComposerStaticInit32c8f92c8ca542c441d48a847b8f13b7
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\Clock\\' => 24,
+            'SocialiteProviders\\Spotify\\' => 27,
+            'SocialiteProviders\\Manager\\' => 27,
+            'SocialiteProviders\\Discord\\' => 27,
         ),
         'P' => 
         array (
@@ -193,6 +196,18 @@ class ComposerStaticInit32c8f92c8ca542c441d48a847b8f13b7
         array (
             0 => __DIR__ . '/..' . '/symfony/clock',
         ),
+        'SocialiteProviders\\Spotify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/socialiteproviders/spotify',
+        ),
+        'SocialiteProviders\\Manager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/socialiteproviders/manager/src',
+        ),
+        'SocialiteProviders\\Discord\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/socialiteproviders/discord',
+        ),
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
@@ -203,8 +218,8 @@ class ComposerStaticInit32c8f92c8ca542c441d48a847b8f13b7
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -236,9 +251,9 @@ class ComposerStaticInit32c8f92c8ca542c441d48a847b8f13b7
         ),
         'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/conditionable',
-            1 => __DIR__ . '/..' . '/illuminate/macroable',
-            2 => __DIR__ . '/..' . '/illuminate/collections',
+            0 => __DIR__ . '/..' . '/illuminate/collections',
+            1 => __DIR__ . '/..' . '/illuminate/conditionable',
+            2 => __DIR__ . '/..' . '/illuminate/macroable',
             3 => __DIR__ . '/..' . '/illuminate/reflection',
             4 => __DIR__ . '/..' . '/illuminate/support',
         ),

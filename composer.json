@@ -1,5 +1,7 @@
 {
     "require": {
-        "laravel/socialite": "^5.25"
+        "laravel/socialite": "^5.25",
+        "socialiteproviders/discord": "^4.2",
+        "socialiteproviders/spotify": "^4.1"
     }
 }
