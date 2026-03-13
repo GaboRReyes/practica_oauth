@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Support\Facades\Event;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Spotify\SpotifyExtendSocialite;
+use SocialiteProviders\Discord\DiscordExtendSocialite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+       Event::listen(SocialiteWasCalled::class, SpotifyExtendSocialite::class.'@handle');
+       Event::listen(SocialiteWasCalled::class, DiscordExtendSocialite::class.'@handle');
     }
 }

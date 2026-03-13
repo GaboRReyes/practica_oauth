@@ -1,50 +1,69 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
 
+
     public function redirectDiscord()
-    {
-        return Socialite::driver('discord')->redirect();
-    }
+{
+    return Socialite::driver('discord')
+        ->scopes(['identify','email'])
+        ->redirect();
+}
 
-    public function handleDiscordCallback()
-    {
-        $discordUser = Socialite::driver('discord')->user();
+public function handleDiscordCallback()
+{
+    $discordUser = Socialite::driver('discord')
+        ->stateless()
+        ->user();
 
-        $user = User::updateOrCreate([
-            'email' => $discordUser->email,
-        ],[
-            'name' => $discordUser->name,
-        ]);
+    $email = $discordUser->email ?? $discordUser->id.'@discord.local';
 
-        Auth::login($user);
+    $user = User::updateOrCreate([
+        'email' => $email,
+    ],[
+        'name' => $discordUser->name,
+        'password' => bcrypt(\Illuminate\Support\Str::random(16)),
+    ]);
 
-        return redirect('/dashboard');
-    }
+    Auth::login($user);
+
+    return redirect('/dashboard');
+}
 
     public function redirectSpotify()
     {
-        return Socialite::driver('spotify')->redirect();
+        return Socialite::driver('spotify')
+    ->scopes(['user-read-email'])
+    ->redirect();
     }
 
     public function handleSpotifyCallback()
-    {
-        $spotifyUser = Socialite::driver('spotify')->user();
+{
+    $spotifyUser = Socialite::driver('spotify')
+        ->stateless()
+        ->user();
 
-        $user = User::updateOrCreate([
-            'email' => $spotifyUser->email,
-        ],[
-            'name' => $spotifyUser->name,
-        ]);
+    $email = $spotifyUser->email ?? $spotifyUser->id.'@spotify.local';
 
-        Auth::login($user);
+    $user = User::updateOrCreate([
+        'email' => $email,
+    ],[
+        'name' => $spotifyUser->name,
+        'password' => bcrypt(Str::random(16)),
+    ]);
 
-        return redirect('/dashboard');
-    }
+    Auth::login($user);
+
+    return redirect('/dashboard');
+}
 
 }
